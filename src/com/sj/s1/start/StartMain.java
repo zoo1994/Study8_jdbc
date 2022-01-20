@@ -19,21 +19,15 @@ public class StartMain {
 		DepartmentView departmentView = new DepartmentView();
 		LocationView lv = new LocationView();
 		LocationDAO ld = new LocationDAO();
+		
 		try {
-			List<DepartmentDTO> al = departmentDAO.getList();
-			departmentView.view(al);
+			DepartmentDTO dd = departmentDAO.getOne(20);
+			System.out.println(dd.getDepartment_name());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		try {
-			List<LocationDTO>ldd = ld.getList();
-			lv.locationView(ldd);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
+		System.out.println();
 
 		System.out.println("DB 연동 테스트 끝");
 	}
