@@ -48,19 +48,19 @@ public class DepartmentDAO {
 	}
 	
 	//부서번호로 조회
-	public DepartmentDTO getOne(Integer department_id) throws Exception {
+	public DepartmentDTO getOne(DepartmentDTO dep) throws Exception {
 		DepartmentDTO dd = null;
 		//db로그인
 		Connection con = dbConnector.getConnect(); 
 		//쿼리명 작성
-		String sql = "SELECT department_name FROM DEPARTMENTS WHERE DEPARTMENT_ID=?";
+		String sql = "SELECT * FROM DEPARTMENTS WHERE DEPARTMENT_ID=?";
 		//쿼리문 미리전송
 		PreparedStatement st= con.prepareStatement(sql);
 		// ?값을 세팅
 		//st.set데이터타입 (int index, 값);
 		//index는 ?의 순서번호
 		//오라클은 1번부터 시작
-		st.setInt(1, department_id);
+		st.setInt(1,dep.getDepartment_id() );
 		//최종 전송 후 결과처리
 		ResultSet rs = st.executeQuery();
 		if (rs.next()) {

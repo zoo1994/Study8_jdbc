@@ -54,5 +54,27 @@ public class LocationDAO {
 		return al;
 
 	}
+	
+	public LocationDTO getListOne(LocationDTO ld) throws Exception {
+		ld= null;
+		Connection com = dbConnector.getConnect();
+		String sql = "select*from locations where location_id = ?";
+		PreparedStatement ps = com.prepareStatement(sql);
+		ps.setInt(1, ld.getLocation_id());
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			ld= new LocationDTO();
+			ld.setLocation_id(rs.getInt("location_id"));
+			ld.setStreet_address(rs.getString("street_address"));
+			ld.setPostal_code(rs.getString("postal_code"));
+			ld.setCity(rs.getString("city"));
+			ld.setState_province(rs.getString("state_province"));
+			ld.setCountry_id(rs.getString("country_id"));			
+		}
+		rs.close();
+		ps.close();
+		com.close();
+		return ld;
+	}
 
 }

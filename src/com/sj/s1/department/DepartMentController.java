@@ -19,7 +19,7 @@ public class DepartMentController {
 	
 	public void start() throws Exception {
 		boolean flag = true ;
-		
+		DepartmentDTO departmentDTO = null;
 		while(flag) {
 			System.out.println("1. 부서 리스트 출력");
 			System.out.println("2. 부서 번호 검색");
@@ -33,12 +33,17 @@ public class DepartMentController {
 				break;
 			case 2 :
 				System.out.println("검색할 부서 번호 입력하세요");
-				int i = sc.nextInt();
-				DepartmentDTO departmentDTO= new DepartmentDTO();
-				departmentDTO.setDepartment_id(i);
+				departmentDTO= new DepartmentDTO();
+				departmentDTO.setDepartment_id(sc.nextInt());
 				departmentDTO = departmentDAO.getOne(departmentDTO);
+				if (departmentDTO==null) {
+					System.out.println("부서번호가 틀렸습니다.");
+					break;
+				}else {
+					departmentView.viewOne(departmentDTO);
+				}
 				break;
-			defualt :
+			default :
 				flag = false;
 			}						
 		}		

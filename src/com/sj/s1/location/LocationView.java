@@ -12,13 +12,17 @@ public class LocationView {
 
 	public void locationView(List<LocationDTO>al) {
 		for(int i = 0; i<al.size();i++) {
-			System.out.print(al.get(i).getLocation_id()+"\t");
-			System.out.print(al.get(i).getStreet_address()+"\t");
-			System.out.print(al.get(i).getPostal_code()+"\t");
-			System.out.print(al.get(i).getCity()+"\t");
-			System.out.print(al.get(i).getState_province()+"\t");
-			System.out.println(al.get(i).getCountry_id());
-			System.out.println("----------------------------------------");
+			this.locationViewOne(al.get(i));
 		}
+	}
+	
+	public void locationViewOne(LocationDTO ld) {
+		System.out.print(ld.getLocation_id()+"\t");
+		System.out.print(ld.getStreet_address()+"\t");
+		System.out.print(ld.getPostal_code()+"\t");
+		System.out.print(ld.getCity()+"\t");
+		System.out.print(ld.getState_province()+"\t");
+		System.out.println(ld.getCountry_id());
+		System.out.println("-------------------------------------------------");
 	}
 }
